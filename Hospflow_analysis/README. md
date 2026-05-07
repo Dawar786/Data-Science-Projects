@@ -1,4 +1,4 @@
-# 🏥 HospFlow
+🏥 HospFlow
 
 HospFlow is a smart healthcare management platform designed to simplify hospital services and emergency healthcare accessibility for patients.
 
@@ -11,29 +11,26 @@ The platform provides:
 - 🫁 Oxygen cylinder availability tracking
 - 🚑 Emergency healthcare assistance
 
----
 
-# 🚀 Features
+🚀 Features
 
-## ✅ Live Bed Tracking
+✅ Live Bed Tracking
 Track real-time availability of:
 - ICU beds
 - Oxygen beds
 - General beds
 - Emergency beds
 
----
 
-## 👨‍⚕️ Doctor Appointment Booking
+👨‍⚕️ Doctor Appointment Booking
 Patients can:
 - Search doctors
 - Select hospitals
 - Book appointments online
 - Choose available time slots
 
----
 
-## 🧪 Medical Test Booking
+🧪 Medical Test Booking
 Users can:
 - Book lab tests
 - Upload prescriptions
@@ -41,52 +38,45 @@ Users can:
 
 ---
 
-## 📄 Report Management
+📄 Report Management
 Patients can:
 - Upload medical reports
 - Access reports anytime
 - Share reports with doctors securely
 
----
 
-## 🏥 Hospital Dashboard
+🏥 Hospital Dashboard
 Hospitals can:
 - Update bed availability
 - Manage appointments
 - Handle patient records
 - Monitor healthcare resources
 
----
-
-## 🫁 Oxygen Cylinder Availability
+🫁 Oxygen Cylinder Availability
 Live tracking system for:
 - Oxygen cylinders
 - Emergency oxygen support
 
----
+Tech Stack
 
-# 🛠️ Tech Stack
-
-## Frontend
+Frontend
 - HTML
 - CSS
 - JavaScript
 - React.js
 
-## Backend
+Backend
 - Node.js
 - Express.js
 
-## Database
+Database
 - MongoDB
 
-## Other Tools
+Other Tools
 - Git & GitHub
 - REST APIs
 
----
-
-# 📱 Future Enhancements
+📱 Future Enhancements
 
 - AI-powered hospital recommendations
 - Ambulance live tracking
@@ -94,16 +84,13 @@ Live tracking system for:
 - Medicine delivery integration
 - Emergency SOS system
 
----
-
-# 🎯 Project Goal
+🎯 Project Goal
 
 HospFlow aims to improve healthcare accessibility by digitizing critical hospital services and reducing emergency response delays.
 
----
 
 
-# ⚙️ Installation
+⚙️ Installation
 
 ```bash
 git clone https://github.com/Dawar786/Hospflow_analysis.git
