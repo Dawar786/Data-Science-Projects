@@ -92,7 +92,7 @@ HospFlow aims to improve healthcare accessibility by digitizing critical hospita
 
 ⚙️ Installation
 
-```bash
+bash
 git clone https://github.com/Dawar786/Hospflow_analysis.git
 cd hospflow
 npm install
