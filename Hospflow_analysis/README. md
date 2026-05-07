@@ -1,1 +1,117 @@
-Create Hospflow project folder
+# 🏥 HospFlow
+
+HospFlow is a smart healthcare management platform designed to simplify hospital services and emergency healthcare accessibility for patients.
+
+The platform provides:
+- 🔴 Live hospital bed tracking
+- 🩺 Online doctor appointment booking
+- 🧪 Medical test booking
+- 📄 Medical report uploads
+- 🏥 Hospital information system
+- 🫁 Oxygen cylinder availability tracking
+- 🚑 Emergency healthcare assistance
+
+---
+
+# 🚀 Features
+
+## ✅ Live Bed Tracking
+Track real-time availability of:
+- ICU beds
+- Oxygen beds
+- General beds
+- Emergency beds
+
+---
+
+## 👨‍⚕️ Doctor Appointment Booking
+Patients can:
+- Search doctors
+- Select hospitals
+- Book appointments online
+- Choose available time slots
+
+---
+
+## 🧪 Medical Test Booking
+Users can:
+- Book lab tests
+- Upload prescriptions
+- View test schedules
+
+---
+
+## 📄 Report Management
+Patients can:
+- Upload medical reports
+- Access reports anytime
+- Share reports with doctors securely
+
+---
+
+## 🏥 Hospital Dashboard
+Hospitals can:
+- Update bed availability
+- Manage appointments
+- Handle patient records
+- Monitor healthcare resources
+
+---
+
+## 🫁 Oxygen Cylinder Availability
+Live tracking system for:
+- Oxygen cylinders
+- Emergency oxygen support
+
+---
+
+# 🛠️ Tech Stack
+
+## Frontend
+- HTML
+- CSS
+- JavaScript
+- React.js
+
+## Backend
+- Node.js
+- Express.js
+
+## Database
+- MongoDB
+
+## Other Tools
+- Git & GitHub
+- REST APIs
+
+---
+
+# 📱 Future Enhancements
+
+- AI-powered hospital recommendations
+- Ambulance live tracking
+- Online video consultation
+- Medicine delivery integration
+- Emergency SOS system
+
+---
+
+# 🎯 Project Goal
+
+HospFlow aims to improve healthcare accessibility by digitizing critical hospital services and reducing emergency response delays.
+
+---
+
+# 📸 Screenshots
+
+(Add your project screenshots here)
+
+---
+
+# ⚙️ Installation
+
+```bash
+git clone https://github.com/your-username/hospflow.git
+cd hospflow
+npm install
+npm start
