@@ -9,9 +9,15 @@ from faker import Faker
 from app import app
 from models import db, Hospital, Bed, Doctor, Appointment, LabTest, TestBooking, Report, OxygenCylinder
 
-fake = Faker()
+fake = Faker("en_IN")
 Faker.seed(42)
 random.seed(42)
+
+INDIAN_CITIES = [
+    "Jammu", "Srinagar", "Delhi", "Mumbai", "Bengaluru", "Chennai",
+    "Hyderabad", "Pune", "Kolkata", "Ahmedabad", "Lucknow", "Chandigarh",
+    "Jaipur", "Amritsar", "Ludhiana",
+]
 
 BED_TYPES = ["ICU", "Oxygen", "General", "Emergency"]
 SPECIALIZATIONS = [
@@ -48,11 +54,12 @@ def seed():
         db.session.commit()
 
         hospitals = []
-        for _ in range(8):
+        used_cities = random.sample(INDIAN_CITIES, k=8)
+        for city in used_cities:
             h = Hospital(
-                name=f"{fake.city()} {random.choice(['General Hospital', 'Multispeciality Hospital', 'Medical Center', 'City Hospital'])}",
-                location=fake.city(),
-                contact=fake.msisdn()[:10],
+                name=f"{city} {random.choice(['General Hospital', 'Multispeciality Hospital', 'Medical Center', 'City Hospital'])}",
+                location=city,
+                contact="9" + str(random.randint(100000000, 999999999)),
             )
             db.session.add(h)
             hospitals.append(h)
@@ -82,7 +89,7 @@ def seed():
             d = random.choice(doctors)
             db.session.add(Appointment(
                 patient_name=fake.name(),
-                patient_contact=fake.msisdn()[:10],
+                patient_contact="9" + str(random.randint(100000000, 999999999)),
                 doctor_id=d.id,
                 date=fake.date_between(start_date="-10d", end_date="+20d").isoformat(),
                 time_slot=random.choice(TIME_SLOTS),
