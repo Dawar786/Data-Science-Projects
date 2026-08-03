@@ -57,32 +57,6 @@ Live tracking system for:
 - Oxygen cylinders
 - Emergency oxygen support
 
-Tech Stack
-
-Frontend
-- HTML
-- CSS
-- JavaScript
-- React.js
-
-Backend
-- Node.js
-- Express.js
-
-Database
-- MongoDB
-
-Other Tools
-- Git & GitHub
-- REST APIs
-
-📱 Future Enhancements
-
-- AI-powered hospital recommendations
-- Ambulance live tracking
-- Online video consultation
-- Medicine delivery integration
-- Emergency SOS system
 
 🎯 Project Goal
 
@@ -90,10 +64,3 @@ HospFlow aims to improve healthcare accessibility by digitizing critical hospita
 
 
 
-⚙️ Installation
-
-bash
-git clone https://github.com/Dawar786/Hospflow_analysis.git
-cd hospflow
-npm install
-npm start
