@@ -1,66 +1,77 @@
-🏥 HospFlow
+# HospFlow
 
-HospFlow is a smart healthcare management platform designed to simplify hospital services and emergency healthcare accessibility for patients.
+Smart healthcare management platform — live hospital bed tracking, doctor
+appointment booking, medical test booking, report uploads, hospital
+dashboards, and oxygen cylinder availability tracking.
 
-The platform provides:
-- 🔴 Live hospital bed tracking
-- 🩺 Online doctor appointment booking
-- 🧪 Medical test booking
-- 📄 Medical report uploads
-- 🏥 Hospital information system
-- 🫁 Oxygen cylinder availability tracking
-- 🚑 Emergency healthcare assistance
+## Tech Stack
+- **Backend:** Python, Flask, Flask-SQLAlchemy
+- **Database:** SQLite (file-based, zero setup — swap for PostgreSQL/MySQL later by changing `SQLALCHEMY_DATABASE_URI` in `app.py`)
+- **Frontend:** Jinja2 templates + plain CSS (no build step needed)
+- **Dummy data:** generated with `Faker`
 
+## Project Structure
+```
+hospflow/
+├── app.py              # Flask app & all routes
+├── models.py            # Database models (SQLAlchemy)
+├── seed.py               # Populates dummy data — RUN THIS FIRST
+├── requirements.txt
+├── static/style.css
+├── templates/            # All HTML pages
+├── uploads/               # Uploaded reports & prescriptions land here
+└── instance/hospflow.db  # SQLite DB (auto-created)
+```
 
-🚀 Features
+## Setup
 
-✅ Live Bed Tracking
-Track real-time availability of:
-- ICU beds
-- Oxygen beds
-- General beds
-- Emergency beds
+```bash
+cd hospflow
+python -m venv venv
+source venv/bin/activate      # Windows: venv\Scripts\activate
+pip install -r requirements.txt
+python seed.py                # creates tables + fills dummy data
+python app.py
+```
 
+Open **http://127.0.0.1:5000**
 
-👨‍⚕️ Doctor Appointment Booking
-Patients can:
-- Search doctors
-- Select hospitals
-- Book appointments online
-- Choose available time slots
+## Where to plug in your real dataset
 
+Right now `seed.py` fills the database with realistic-looking fake data
+(hospitals, doctors, beds, appointments, tests, reports) using `Faker`, so
+the whole app is demoable immediately. To move to real data:
 
-🧪 Medical Test Booking
-Users can:
-- Book lab tests
-- Upload prescriptions
-- View test schedules
+1. **Hospitals & beds** — replace the loop in `seed.py` that creates
+   `Hospital`/`Bed`/`OxygenCylinder` rows with a CSV/JSON import of your
+   actual hospital list (name, location, contact, bed counts per type).
+2. **Doctors** — same pattern: import a real doctor roster instead of the
+   `fake.name()` calls.
+3. **Lab tests** — `LAB_TESTS` in `seed.py` is a plain list of
+   `(name, price)` tuples — swap in your real test catalog.
+4. Once you have a real source, either:
+   - write a one-off `import_csv.py` that reads your file and calls
+     `db.session.add(...)` the same way `seed.py` does, or
+   - build an admin form (the `hospital_dashboard.html` page is a good
+     starting point) so hospitals can self-register instead of seeding.
 
----
+Uploaded reports/prescriptions go to `uploads/` — filenames are stored in
+the `Report` and `TestBooking` tables.
 
-📄 Report Management
-Patients can:
-- Upload medical reports
-- Access reports anytime
-- Share reports with doctors securely
+## Feature → Route Map
+| Feature | Route |
+|---|---|
+| Live bed tracking | `/beds` |
+| Hospital dashboard (update beds/oxygen) | `/hospitals/<id>` |
+| Doctor search & booking | `/doctors`, `/appointments/book/<doctor_id>` |
+| Appointments list | `/appointments` |
+| Medical test booking | `/tests`, `/tests/book/<test_id>` |
+| Report upload | `/reports` |
+| Oxygen tracking | `/oxygen` |
+| Hospital directory | `/hospitals` |
 
-
-🏥 Hospital Dashboard
-Hospitals can:
-- Update bed availability
-- Manage appointments
-- Handle patient records
-- Monitor healthcare resources
-
-🫁 Oxygen Cylinder Availability
-Live tracking system for:
-- Oxygen cylinders
-- Emergency oxygen support
-
-
-🎯 Project Goal
-
-HospFlow aims to improve healthcare accessibility by digitizing critical hospital services and reducing emergency response delays.
-
-
-
+## Next steps for production
+- Add authentication (patients vs hospital-admin roles)
+- Move file uploads to cloud storage (S3 etc.) instead of local `uploads/`
+- Switch SQLite → PostgreSQL for concurrent writes
+- Add form validation + CSRF protection (Flask-WTF)
