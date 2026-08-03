@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Book Test — HospFlow{% endblock %}
+{% block content %}
+<h1>Book Test</h1>
+<p class="subtitle">{{ test.name }} — ₹{{ test.price }}</p>
+
+<form class="form-card" method="post" enctype="multipart/form-data">
+  <label>Patient Name</label>
+  <input type="text" name="patient_name" required>
+
+  <label>Hospital / Lab</label>
+  <select name="hospital_id" required>
+    {% for h in hospitals %}
+      <option value="{{ h.id }}">{{ h.name }}</option>
+    {% endfor %}
+  </select>
+
+  <label>Preferred Date</label>
+  <input type="date" name="date" required>
+
+  <label>Upload Prescription (optional)</label>
+  <input type="file" name="prescription" accept=".pdf,.png,.jpg,.jpeg">
+
+  <div style="margin-top:18px;">
+    <button class="btn" type="submit">Confirm Booking</button>
+  </div>
+</form>
+{% endblock %}

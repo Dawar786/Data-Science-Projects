@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Hospitals — HospFlow{% endblock %}
+{% block content %}
+<h1>🏥 Hospital Information System</h1>
+<p class="subtitle">All partner hospitals on the platform.</p>
+
+<div class="grid">
+  {% for h in hospitals %}
+  <div class="card">
+    <h3>{{ h.name }}</h3>
+    <div class="meta">📍 {{ h.location }} &nbsp;|&nbsp; 📞 {{ h.contact }}</div>
+    <div class="meta">{{ h.doctors|length }} doctors on staff</div>
+    <a class="btn small" href="{{ url_for('hospital_dashboard', hospital_id=h.id) }}">Open Dashboard</a>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

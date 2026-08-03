@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}{{ hospital.name }} — Dashboard{% endblock %}
+{% block content %}
+<h1>{{ hospital.name }}</h1>
+<p class="subtitle">📍 {{ hospital.location }} &nbsp;|&nbsp; 📞 {{ hospital.contact }}</p>
+
+<h2>Bed Availability</h2>
+<table>
+  <tr><th>Type</th><th>Total</th><th>Available</th><th>Update</th></tr>
+  {% for bed in hospital.beds %}
+  <tr>
+    <td>{{ bed.bed_type }}</td>
+    <td>{{ bed.total }}</td>
+    <td>{{ bed.available }}</td>
+    <td>
+      <form class="inline" method="post" action="{{ url_for('update_bed', bed_id=bed.id) }}">
+        <input type="number" name="available" value="{{ bed.available }}" min="0" max="{{ bed.total }}" style="width:70px;">
+        <button class="btn small" type="submit">Save</button>
+      </form>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+
+<h2 style="margin-top:28px;">Oxygen Cylinders</h2>
+{% if hospital.oxygen %}
+<table>
+  <tr><th>Total</th><th>Available</th><th>Update</th></tr>
+  <tr>
+    <td>{{ hospital.oxygen.total }}</td>
+    <td>{{ hospital.oxygen.available }}</td>
+    <td>
+      <form class="inline" method="post" action="{{ url_for('update_oxygen', hospital_id=hospital.id) }}">
+        <input type="number" name="available" value="{{ hospital.oxygen.available }}" min="0" max="{{ hospital.oxygen.total }}" style="width:70px;">
+        <button class="btn small" type="submit">Save</button>
+      </form>
+    </td>
+  </tr>
+</table>
+{% endif %}
+
+<h2 style="margin-top:28px;">Doctors on Staff</h2>
+<table>
+  <tr><th>Name</th><th>Specialization</th></tr>
+  {% for d in hospital.doctors %}
+  <tr><td>{{ d.name }}</td><td>{{ d.specialization }}</td></tr>
+  {% endfor %}
+</table>
+{% endblock %}

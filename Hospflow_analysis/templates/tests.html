@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Medical Tests — HospFlow{% endblock %}
+{% block content %}
+<h1>🧪 Medical Test Booking</h1>
+<p class="subtitle">Book lab tests and upload prescriptions.</p>
+
+<div class="grid">
+  {% for t in tests %}
+  <div class="card">
+    <h3>{{ t.name }}</h3>
+    <div class="meta">₹{{ t.price }}</div>
+    <a class="btn small" href="{{ url_for('book_test', test_id=t.id) }}">Book Test</a>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Book Appointment — HospFlow{% endblock %}
+{% block content %}
+<h1>Book Appointment</h1>
+<p class="subtitle">with {{ doctor.name }} ({{ doctor.specialization }}) — {{ doctor.hospital.name }}</p>
+
+<form class="form-card" method="post">
+  <label>Patient Name</label>
+  <input type="text" name="patient_name" required>
+
+  <label>Contact Number</label>
+  <input type="text" name="patient_contact">
+
+  <label>Preferred Date</label>
+  <input type="date" name="date" required>
+
+  <label>Time Slot</label>
+  <select name="time_slot" required>
+    {% for slot in time_slots %}
+      <option value="{{ slot }}">{{ slot }}</option>
+    {% endfor %}
+  </select>
+
+  <div style="margin-top:18px;">
+    <button class="btn" type="submit">Confirm Booking</button>
+  </div>
+</form>
+{% endblock %}

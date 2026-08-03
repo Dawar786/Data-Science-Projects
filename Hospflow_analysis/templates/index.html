@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}HospFlow — Home{% endblock %}
+{% block content %}
+<h1>HospFlow</h1>
+<p class="subtitle">Smart healthcare management — live beds, appointments, tests, reports & emergency oxygen, all in one place.</p>
+
+<div class="stats-grid">
+  <div class="stat-card">
+    <div class="value">{{ total_hospitals }}</div>
+    <div class="label">Partner Hospitals</div>
+  </div>
+  <div class="stat-card">
+    <div class="value">{{ total_beds_available }}</div>
+    <div class="label">Beds Available Now</div>
+  </div>
+  <div class="stat-card">
+    <div class="value">{{ total_oxygen_available }}</div>
+    <div class="label">Oxygen Cylinders Available</div>
+  </div>
+</div>
+
+<h2>Hospitals</h2>
+<div class="grid">
+  {% for h in hospitals %}
+  <div class="card">
+    <h3>{{ h.name }}</h3>
+    <div class="meta">📍 {{ h.location }} &nbsp;|&nbsp; 📞 {{ h.contact }}</div>
+    {% for bed in h.beds %}
+      <div class="bed-row">
+        <span>{{ bed.bed_type }}</span>
+        <span class="badge {% if bed.available == 0 %}out{% elif bed.available < bed.total * 0.2 %}low{% else %}ok{% endif %}">
+          {{ bed.available }}/{{ bed.total }}
+        </span>
+      </div>
+    {% endfor %}
+    <div style="margin-top:12px;">
+      <a class="btn small" href="{{ url_for('hospital_dashboard', hospital_id=h.id) }}">Manage</a>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

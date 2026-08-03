@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Live Bed Tracking — HospFlow{% endblock %}
+{% block content %}
+<h1>🔴 Live Bed Tracking</h1>
+<p class="subtitle">Real-time ICU, Oxygen, General & Emergency bed availability across hospitals.</p>
+
+<div class="grid">
+  {% for h in hospitals %}
+  <div class="card">
+    <h3>{{ h.name }}</h3>
+    <div class="meta">📍 {{ h.location }}</div>
+    {% for bed in h.beds %}
+      {% if not filter_type or bed.bed_type == filter_type %}
+      <div class="bed-row">
+        <span>{{ bed.bed_type }}</span>
+        <span class="badge {% if bed.available == 0 %}out{% elif bed.available < bed.total * 0.2 %}low{% else %}ok{% endif %}">
+          {{ bed.available }}/{{ bed.total }} available
+        </span>
+      </div>
+      {% endif %}
+    {% endfor %}
+    <div style="margin-top:12px;">
+      <a class="btn small" href="{{ url_for('hospital_dashboard', hospital_id=h.id) }}">Update availability</a>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

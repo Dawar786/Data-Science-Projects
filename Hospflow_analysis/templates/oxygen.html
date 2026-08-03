@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Oxygen Availability — HospFlow{% endblock %}
+{% block content %}
+<h1>🫁 Oxygen Cylinder Availability</h1>
+<p class="subtitle">Live tracking for emergency oxygen support across hospitals.</p>
+
+<table>
+  <tr><th>Hospital</th><th>Location</th><th>Available</th><th>Total</th><th>Status</th><th>Action</th></tr>
+  {% for h in hospitals %}
+  {% if h.oxygen %}
+  <tr>
+    <td>{{ h.name }}</td>
+    <td>{{ h.location }}</td>
+    <td>{{ h.oxygen.available }}</td>
+    <td>{{ h.oxygen.total }}</td>
+    <td>
+      <span class="badge {% if h.oxygen.available == 0 %}out{% elif h.oxygen.available < h.oxygen.total * 0.2 %}low{% else %}ok{% endif %}">
+        {% if h.oxygen.available == 0 %}Out of stock{% elif h.oxygen.available < h.oxygen.total * 0.2 %}Low{% else %}Available{% endif %}
+      </span>
+    </td>
+    <td><a class="btn small" href="{{ url_for('hospital_dashboard', hospital_id=h.id) }}">Update</a></td>
+  </tr>
+  {% endif %}
+  {% endfor %}
+</table>
+{% endblock %}
