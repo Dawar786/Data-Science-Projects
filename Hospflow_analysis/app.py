@@ -7,11 +7,14 @@ BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 UPLOAD_FOLDER = os.path.join(BASE_DIR, "uploads")
 ALLOWED_EXTENSIONS = {"pdf", "png", "jpg", "jpeg"}
 
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+os.makedirs(os.path.join(BASE_DIR, "instance"), exist_ok=True)
+
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{os.path.join(BASE_DIR, 'instance', 'hospflow.db')}"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
-app.secret_key = "dev-secret-key-change-this-in-production"
+app.secret_key = os.environ.get("SECRET_KEY", "dev-secret-key-change-this-in-production")
 
 db.init_app(app)
 
