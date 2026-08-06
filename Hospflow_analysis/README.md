@@ -34,7 +34,7 @@ python seed.py                # creates tables + fills dummy data
 python app.py
 ```
 
-Open **http://127.0.0.1:5000**
+Open **http://hospflow.onrender.com**
 
 ## Where to plug in your real dataset
 
