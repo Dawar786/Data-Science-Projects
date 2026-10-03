@@ -1,6 +1,6 @@
 # Data Analysis Portfolio
 
-Hi, I’m Dawar Parvaiz, a Data Science student with interest in Data Analysis and Machine Learning.
+Hi, I’m Dawar , a Data Science student with interest in Data Analysis and Machine Learning.
 
 This repository contains my academic and personal projects focused on:
 - Data Cleaning & Exploratory Data Analysis (EDA)
